@@ -96,6 +96,8 @@ func (i *Injector) Inject(loadBpf loadBpfFunc, library string, ver *version.Vers
 		return nil, fmt.Errorf("adding flags injections: %w", err)
 	}
 
+	spec.LogLevel = 1
+
 	log.Logger.V(0).Info("Injecting variables", "vars", injectedVars)
 	if len(injectedVars) > 0 {
 		err = spec.RewriteConstants(injectedVars)
